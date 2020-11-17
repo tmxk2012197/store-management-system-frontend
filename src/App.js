@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import ListStoreComponent from './components/ListStoreComponent';
+import HeaderComponent from './components/HeaderComponent';
+import CreateStoreComponent from './components/CreateStoreComponent';
+import UpdateStoreComponent from './components/UpdateStoreComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+          <HeaderComponent/>
+          <div className="container">  
+            <Switch>
+              <Route path="/stores" component={ListStoreComponent}></Route>
+              <Route path="/add-store" component={CreateStoreComponent}></Route>
+              <Route path="/update-store/:id" component={UpdateStoreComponent}></Route>
+              <Route path="/" exact component={ListStoreComponent}></Route>
+            </Switch>       
+        </div>
+      </Router>
     </div>
   );
 }
